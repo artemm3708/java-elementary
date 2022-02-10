@@ -1,0 +1,20 @@
+git init : create empty git repository (.git folder)
+git add <path> : index files at path (add to index)
+git commit : save indexed changes (message in vim)
+git commit -m"<comment>" : -//-
+git push <remote> <branch> : push current branch to branch <branch> at <remote>
+git push --set-upstream <remote> <branch> : push current branch to branch <branch> at <remote> and create ref
+git push : push to referenced remote branch
+git remote add <name> <url> : add remote (<name> = origin)
+git branch : show branches
+git branch <name> : create a branch
+git branch -d <name> : delete a branch
+git branch -a : show all branches (with remote)
+git checkout <commit|branch> : switch to branch/commit
+git checkout -b <branch> : switch to new branch
+git fetch : load remote branches
+git pull : git fetch + git merge
+git merge <branch> : give changes from <branch> to current branch
+git merge --abort : dischange current merge (in conflict)
+git log : list of commits
+git status : current git state
