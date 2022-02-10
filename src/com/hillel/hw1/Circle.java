@@ -2,22 +2,24 @@ package com.hillel.hw1;
 
 public class Circle {
 
-    double x;
-    double y;
-    double r;
+    Point center;
+    private double r;
 
-    public Circle(double x, double y, double r) {
-        this.x = x;
-        this.y = y;
+    public Circle(Point center, double r) {
+        this.center = center;
         this.r = r;
     }
 
-    public boolean isPointInCircle(Circle circle, Point point) {
-        double d = Math.sqrt((Math.pow((circle.x - point.x), 2)) + (Math.pow((circle.y - point.y), 2)));
-        if (d <= circle.r) {
-            return true;
-        } else {
-            return false;
-        }
+    public double getR() {
+        return this.r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
+    }
+
+    public boolean isPointInCircle(Point point) {
+        double d = this.center.distanceTo(point);
+        return d <= this.r;
     }
 }

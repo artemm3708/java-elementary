@@ -3,6 +3,8 @@ package com.hillel.hw1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PointMain {
 
@@ -10,36 +12,40 @@ public class PointMain {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Введите координаты точки");
-        double x = Double.parseDouble(READER.readLine());
-        double y = Double.parseDouble(READER.readLine());
-        Point point = new Point(x, y);
+        List<Point> points = new ArrayList<>();
 
-        System.out.println("Желвете ввести еще (1-да, 2-нет)");
-        int choice = Integer.parseInt(READER.readLine());
-        Point point1 = null;
-        switch (choice) {
-            case 1:
-                System.out.println("Введите координаты точки");
-                double x1 = Double.parseDouble(READER.readLine());
-                double y1 = Double.parseDouble(READER.readLine());
-                point1 = new Point(x1, y1);
-            case 2:
-                break;
-        }
+        Point point = View.createPoint();
 
-        System.out.println("Введите координаты центра круга и радиус");
-        double circleCentre = Double.parseDouble(READER.readLine());
-        double circleCentre2 = Double.parseDouble(READER.readLine());
-        double r = Double.parseDouble(READER.readLine());
-        Circle circle = new Circle(circleCentre, circleCentre2, r);
+        points.add(point);
 
-        if (circle.isPointInCircle(circle, point) == true || circle.isPointInCircle(circle, point1) == true) {
-            System.out.println("Точка находится в круге");
-        } else {
-            System.out.println("Точка не в круге");
-        }
+        secondPoint(points);
+
+        Circle circle = View.createCircle();
+
+        showPointsInCircle(points, circle);
 
     }
 
+    private static void secondPoint(List<Point> points) throws IOException {
+        System.out.println("Желаете ввести еще (1-да, 2-нет)");
+        int choice = Integer.parseInt(READER.readLine());
+        switch (choice) {
+            case 1:
+                Point point1 = View.createPoint();
+                points.add(point1);
+                secondPoint(points);
+            case 2:
+                break;
+        }
+    }
+
+    private static void showPointsInCircle(List<Point> points, Circle circle) {
+        for (Point point : points) {
+            if (circle.isPointInCircle(point) == true) {
+                System.out.println("Ваша точка в круге" + point);
+            } else {
+                System.out.println("Ваша точка не в круге" + point);
+            }
+        }
+    }
 }
